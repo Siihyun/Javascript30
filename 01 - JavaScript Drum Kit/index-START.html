@@ -57,31 +57,28 @@
 
     <script>
       function playSound(e) {
-        console.log(e.keyCode);
-        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // get audio for input key
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // get key tag for input key
+
         if (!audio) return;
         audio.currentTime = 0;
-        console.log(audio);
-        console.log(key);
-        key.classList.add("playing");
         audio.play();
+
+        key.classList.add("playing"); // add "playing" class for transition effect
       }
 
       function removeTransition(e) {
         if (e.propertyName !== "transform") return;
-
-        console.log(e.propertyName);
-        this.classList.remove("playing");
+        console.log(this);
+        e.target.classList.remove("playing"); // remove "playing" class after transition is done
       }
 
-      const keys = document.querySelectorAll(".key");
-      keys.forEach(function (key) {
+      const keys = document.querySelectorAll(".key"); // get div key for add transitionend event
+      keys.forEach((key) => {
         key.addEventListener("transitionend", removeTransition);
       });
 
       window.addEventListener("keydown", playSound);
-      // 주의사항 적어놓자... code에!
     </script>
   </body>
 </html>
