@@ -5,6 +5,7 @@
     <title>JS + CSS Clock</title>
   </head>
   <body>
+    <div class="title">Sihyun's Clock</div>
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
@@ -31,12 +32,22 @@
         align-items: center;
       }
 
+      .title {
+        position: absolute;
+        width: 100%;
+        top: 200px;
+        margin: 0px auto;
+        text-align: center;
+        font-weight: bold;
+        font-size: 24px;
+        color: black;
+      }
       .clock {
         width: 30rem;
         height: 30rem;
         border: 20px solid white;
-        border-radius: 50%;
-        margin: 50px auto;
+        border-radius: 50%; /* 원 만들기  */
+        margin: 50px auto; /* 사각형*/
         position: relative;
         padding: 2rem;
         box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
@@ -53,14 +64,39 @@
       }
 
       .hand {
+        position: absolute;
+        background-color: black;
+        top: 50%;
         width: 50%;
         height: 6px;
-        background: black;
-        position: absolute;
-        top: 50%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+        transition: all 0.05s;
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
       }
     </style>
 
-    <script></script>
+    <script>
+      const secondhand = document.querySelector(".second-hand");
+      const minhand = document.querySelector(".min-hand");
+      const hourhand = document.querySelector(".hour-hand");
+
+      function setDate() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        const secDegrees = ((6 * seconds) % 360) + 90;
+        const minDegrees = ((6 * minutes) % 360) + 90;
+        const hourDegrees = ((30 * hours) % 360) + 90;
+
+        secondhand.style.transform = `rotate(${secDegrees}deg)`;
+        minhand.style.transform = `rotate(${minDegrees}deg)`;
+        hourhand.style.transform = `rotate(${hourDegrees}deg)`;
+      }
+
+      setInterval(setDate, 1000);
+    </script>
   </body>
 </html>
