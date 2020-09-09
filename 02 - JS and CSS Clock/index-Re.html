@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>JS + CSS Clock</title>
+    <title>Sihyun's Clock</title>
   </head>
   <body>
     <div class="title">Sihyun's Clock</div>
@@ -25,30 +25,28 @@
 
       body {
         margin: 0;
-        font-size: 2rem;
         display: flex;
-        flex: 1;
+        width: 100vw;
         min-height: 100vh;
         align-items: center;
+        font-size: 2rem;
+        flex: 1;
       }
 
       .title {
         position: absolute;
-        width: 100%;
-        top: 15%;
-        margin: 0px auto;
-        text-align: center;
         font-weight: bold;
         font-size: 24px;
-        color: black;
+        top: 15%;
+        min-width: 100vw;
+        text-align: center;
       }
       .clock {
         width: 30rem;
         height: 30rem;
-        border: 20px solid white;
-        border-radius: 50%; /* 원 만들기  */
-        margin: 50px auto; /* 사각형*/
-        position: relative;
+        border: 2rem solid white;
+        border-radius: 50%;
+        margin: 50px auto;
         padding: 2rem;
         box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
           inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
@@ -58,28 +56,27 @@
         position: relative;
         width: 100%;
         height: 100%;
-        transform: translateY(
+        transform: translateX(
           -3px
         ); /* account for the height of the clock hands */
       }
 
       .hand {
         position: absolute;
+        left: 50%;
+        width: 6px;
+        height: 50%;
         background-color: black;
-        top: 50%;
-        width: 50%;
-        height: 6px;
-        transform-origin: 100%;
-        transform: rotate(90deg);
+        transform-origin: bottom;
         transition: all 0.05s;
         transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
       }
     </style>
 
     <script>
-      const secondhand = document.querySelector(".second-hand");
-      const minhand = document.querySelector(".min-hand");
-      const hourhand = document.querySelector(".hour-hand");
+      const h1 = document.querySelector(".hour-hand");
+      const h2 = document.querySelector(".min-hand");
+      const h3 = document.querySelector(".second-hand");
 
       function setDate() {
         const now = new Date();
@@ -87,13 +84,13 @@
         const minutes = now.getMinutes();
         const hours = now.getHours();
 
-        const secDegrees = ((6 * seconds) % 360) + 90;
-        const minDegrees = ((6 * minutes) % 360) + 90;
-        const hourDegrees = ((30 * hours) % 360) + 90;
+        const secDegrees = (6 * seconds) % 360;
+        const minDegrees = (6 * minutes) % 360;
+        const hourDegrees = (30 * hours) % 360;
 
-        secondhand.style.transform = `rotate(${secDegrees}deg)`;
-        minhand.style.transform = `rotate(${minDegrees}deg)`;
-        hourhand.style.transform = `rotate(${hourDegrees}deg)`;
+        h3.style.transform = `rotate(${secDegrees}deg)`;
+        h2.style.transform = `rotate(${minDegrees}deg)`;
+        h1.style.transform = `rotate(${hourDegrees}deg)`;
       }
 
       setInterval(setDate, 1000);
