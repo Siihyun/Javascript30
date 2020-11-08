@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="flex-parent">
+      <div class="flex_child1">
+        <p><span>first</span></p>
+        <p>second</p>
+        <p>third</p>
+      </div>
+      <div class="flex_child2">
+        <p>second</p>
+      </div>
+      <div class="flex_child3">
+        <p>third</p>
+      </div>
+    </div>
+  </body>
+  <style>
+    body {
+      color: white;
+      margin: 0px;
+    }
+
+    .flex-parent {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
+    .flex_child1 p {
+      border: 1px solid red;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .flex_child1 {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      background-color: black;
+    }
+    .flex_child2 {
+      background-color: blue;
+      flex: 1;
+    }
+    .flex_child3 {
+      background-color: green;
+      flex: 1;
+    }
+  </style>
+</html>
