@@ -5,12 +5,10 @@ function toggleOpen() {
 }
 
 function toggleActive(e) {
-  console.log(e.propertyName);
   if (e.propertyName === "flex-grow") {
     this.classList.toggle("active");
   }
 }
-
 panels.forEach((panel) => {
   panel.addEventListener("click", toggleOpen);
 });
