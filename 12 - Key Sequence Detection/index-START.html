@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Key Detection</title>
+    <script
+      type="text/javascript"
+      src="https://www.cornify.com/js/cornify.js"
+    ></script>
+  </head>
+  <body>
+    <script>
+      const keyString = "fun javascript";
+      let keyPressed = [];
+      const printPressed = (e) => {
+        keyPressed.push(e.key);
+        if (keyPressed.length > keyString.length)
+          keyPressed = keyPressed.slice(1);
+
+        if (keyPressed.join("").includes(keyString)) {
+          console.log("String returned!");
+          cornify_add();
+        }
+      };
+      window.addEventListener("keyup", printPressed);
+    </script>
+  </body>
+</html>
